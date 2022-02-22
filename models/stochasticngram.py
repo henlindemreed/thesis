@@ -83,7 +83,7 @@ class StochasticNGram(Mdl.Model):
         self.n = n
         self.trained = False
 
-    def train(self, data):
+    def train(self, data, stringify):
         # count the n-grams in training texts
         universal_paper_grams = counter()
         universal_abstr_grams = counter()
@@ -113,7 +113,7 @@ class StochasticNGram(Mdl.Model):
         self.trained = True
 
 
-    def generate(self, data):
+    def generate(self, data, stringify):
         # first, make sure that the model has been trained
         if not self.trained:
             raise ValueError("Generation attempted on an empty model. Please give some data to train on")

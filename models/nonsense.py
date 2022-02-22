@@ -11,8 +11,8 @@ class Nonsense(Mdl.Model):
     def __init__(self, *args):
         pass
 
-    def train(self, data):
+    def train(self, data, stringify):
         pass
 
-    def generate(self, data):
+    def generate(self, data, stringify):
         return NONSENSE

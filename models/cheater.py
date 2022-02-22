@@ -9,8 +9,8 @@ class Cheater(Mdl.Model):
     def __init__(self, *args):
         pass
 
-    def train(self, data):
+    def train(self, data, stringify):
         pass
 
-    def generate(self, data):
-        return data.abstr
+    def generate(self, data, stringify):
+        return stringify(data.abstr)
