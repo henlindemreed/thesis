@@ -25,7 +25,7 @@ def parse_me():
 
 if __name__ == '__main__':
     args = parse_me().parse_args()
-    _, te, _, _ = load_dataset(args.dataset_name, 0.15)
+    _, te, _, _ = load_dataset(args.dataset_name)
     to_process = int(len(te) * args.yeild)
     window_size = to_process // args.nproc
     nwindows = len(te) // window_size

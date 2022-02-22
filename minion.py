@@ -31,7 +31,7 @@ def parser():
 
 if __name__ == '__main__':
     args = parser().parse_args()
-    tr, te, va, stringify = load_dataset(args.dataset_name, 0.10)
+    tr, te, va, stringify = load_dataset(args.dataset_name)
     model, drop_me = init_model(args.model_name, stringify)
     window = None
     i = 0
