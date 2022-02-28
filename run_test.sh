@@ -1,3 +1,5 @@
 #!/bin/bash
 
-python3 distributer.py arxiv LED 1 .01 results
+command="nice python3 distributer.py arxiv LED 64 .05 results"
+echo $command
+eval $command

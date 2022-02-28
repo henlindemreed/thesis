@@ -25,17 +25,20 @@ def parse_me():
 
 if __name__ == '__main__':
     args = parse_me().parse_args()
-    _, te, _, _ = load_dataset(args.dataset_name)
+    _, te, _, _ = load_dataset(args.dataset_name, 0.10)
     to_process = int(len(te) * args.yeild)
     window_size = to_process // args.nproc
     nwindows = len(te) // window_size
     window_choices = random.sample(range(nwindows), args.nproc)
-    commands = ['python3', 'minion.py', args.model_name, args.dataset_name, 0, str(window_size), ""]
+    commands = ['nice', 'python3', 'minion.py', args.model_name, args.dataset_name, 0, str(window_size), ""]
     for w in window_choices:
         outfile = args.outdir+"/"+args.dataset_name+"/"+args.model_name+"/"+str(w)+".json"
-        commands[4] = str(w)
-        commands[6] = outfile
-        subprocess.Popen(commands)
+        commands[5] = str(w)
+        commands[7] = outfile
+        print(" ".join(commands))
+        task = subprocess.Popen(commands)
+        # Comment this out for parallel tasks
+        task.communicate()
 
 
 
