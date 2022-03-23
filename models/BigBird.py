@@ -4,7 +4,7 @@ import tensorflow as tf
 import tensorflow_text as tft
 
 DATASET = 'arxiv'
-PEGASUS = True
+PEGASUS = False
 
 tf.compat.v1.enable_resource_variables()
 
@@ -34,5 +34,8 @@ class BigBird(mdl.Model):
 
     def generate(self, data: mdl.DataPair, stringify) -> str:
         summarize = self.model.signatures['serving_default']
+        # Use me for sysconf!
+        #candidate = summarize(tf.constant(data['article']))
+        # Use me for arxiv!
         candidate = summarize(data['article'])
         return candidate['pred_sent'][0].numpy().decode('UTF-8')

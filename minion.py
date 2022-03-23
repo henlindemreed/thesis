@@ -25,6 +25,17 @@ if __name__ == '__main__':
     args = parser().parse_args()
     tr, te, va, stringify = load_dataset(args.dataset_name, 0.10)
     model, drop_me = init_model(args.model_name, stringify)
+    
+    '''
+    # Use me for sysconf!
+    segment_start = args.window_number * args.len_data
+    segment = te[segment_start: segment_start + args.len_data]
+    result, yeild = Evaluate(model, segment, stringify, drop_me)
+    print("Yeild for window {}: {}%".format(args.window_number, yeild * 100))
+    json.dump(result, args.outfile)
+    
+    '''
+    # Use me for arxiv!
     window = None
     i = 0
     for w in te.window(args.len_data, shift=args.len_data):
@@ -36,4 +47,5 @@ if __name__ == '__main__':
             json.dump(result, args.outfile)
             break
         i += 1
+    
 
